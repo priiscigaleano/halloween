@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;800&family=Rubik+Wet+Paint&family=Special+Elite&display=swap');
+
+:root {
+  --negro:#060407; --caja:#0b0709; --sangre:#ff4d5a; --sangre-osc:#4a0b12;
+  --hueso:#e4d6cc; --uva:#a98bcb; --punto:#cfc3d6;
+  --brocha:'Rubik Wet Paint','Cinzel',serif;
+  --gotica:'Cinzel',serif;
+  --maquina:'Special Elite','Courier New',monospace;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+
+body {
+  min-height: 100vh; 
+  overflow-x: hidden;
+  background-color: #060407;
+  
+ background-image: url('/halloween/img/fondo-ojos.gif'); 
+  
+  background-size: cover !important; 
+  background-position: center !important; 
+  background-attachment: fixed !important; 
+  background-repeat: no-repeat !important; 
+  
+  color: var(--hueso); 
+  font-family: var(--maquina); 
+  line-height: 1.65;
+}
+
+/* Hacemos que el GIF se vea más clarito */
+body::before {
+  content:''; position:fixed; inset:0; z-index:999; pointer-events:none; opacity:.1;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Grano sucio sobre toda la página */
+body::before {
+  content:''; position:fixed; inset:0; z-index:999; pointer-events:none; opacity:.1;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 10px;
+  background: var(--sangre);
+  color: #fff;
+  padding: 10px 20px;
+  z-index: 10000;
+  text-decoration: none;
+  font-weight: bold;
+  transition: top 0.3s;
+}
+.skip-link:focus {
+  top: 10px; /* Aparece cuando el usuario presiona Tab */
+}
+
+/* ===== DECORACIÓN: VENTANAS FLOTANTES (ANALOG HORROR) ===== */
+.ventana-flotante {
+  position: absolute; 
+  z-index: 10; /* IMPORTANTE: Menor que las tarjetas para que no las tapen */
+  background: #c0c0c0; 
+  border: 2px solid #fff; 
+  border-right-color: #404040; 
+  border-bottom-color: #404040;
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+  font-family: 'Tahoma', 'MS Sans Serif', sans-serif; 
+  color: #000;
+  pointer-events: none; /* No bloquea los clics */
+  animation: flotar-decoracion 10s ease-in-out infinite alternate;
+  opacity: 0.85; /* Un poquito transparentes para que no distraigan tanto */
+}
+.barra-titulo {
+  background: linear-gradient(90deg, #000080, #1084d0); color: #fff;
+  padding: 3px 5px; font-size: 12px; font-weight: bold;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.barra-titulo span {
+  background: #c0c0c0; color: #000; border: 1px solid #fff;
+  border-right-color: #404040; border-bottom-color: #404040;
+  padding: 0 4px; font-size: 10px;
+}
+.contenido-ventana {
+  padding: 5px; background: #c0c0c0; border: 1px solid #808080;
+  border-right-color: #fff; border-bottom-color: #fff;
+}
+.contenido-ventana img { width: 100%; display: block; filter: grayscale(0.5) contrast(1.2); }
+
+/* Tamaños más grandes y posiciones estratégicas */
+.v1 { 
+  top: 15%; 
+  left: 4%; 
+  width: 260px; /* Más grande (antes 180px) */
+  animation-delay: 0s; 
+}
+.v2 { 
+  top: 25%; 
+  right: 5%; 
+  width: 320px; /* Más grande (antes 220px) */
+  animation-delay: -3s; 
+}
+.v3 { 
+  bottom: 15%; 
+  right: 8%; 
+  width: 280px; /* Más grande (antes 200px) */
+  animation-delay: -6s; 
+}
+
+@keyframes flotar-decoracion {
+  0% { transform: translateY(0) rotate(-1deg); }
+  100% { transform: translateY(-20px) rotate(1.5deg); }
+}
+
+.texto-viejo {
+  font-family: 'Courier New', Courier, monospace; font-size: 11px;
+  background: #fff; padding: 8px; color: #000;
+}
+.texto-viejo p { margin-bottom: 8px; }
+.texto-viejo button {
+  background: #c0c0c0; border: 1px solid #fff; border-right-color: #404040;
+  border-bottom-color: #404040; padding: 2px 8px; font-size: 11px; cursor: default;
+}
+
+.camara { position: relative; background: #000; padding: 0; border: none; }
+.camara img { filter: grayscale(1) sepia(0.3) contrast(1.5) brightness(0.7); }
+.scanlines {
+  position: absolute; inset: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 4px, 6px 100%; pointer-events: none;
+}
+
+/* ===== BOTONES ===== */
+.btn {
+  display:inline-block; border:none; cursor:pointer; text-decoration:none;
+  background:var(--sangre); color:var(--negro);
+  font-family:var(--brocha); font-size:1.05em; padding:11px 28px;
+  transform:rotate(-1.5deg);
+  clip-path:polygon(2% 8%,18% 0,40% 6%,63% 0,86% 5%,100% 2%,98% 45%,100% 92%,78% 100%,52% 94%,27% 100%,3% 95%,0 55%);
+  transition:transform .15s, background .15s;
+}
+.btn:hover { background:#ff3341; transform:rotate(1deg) scale(1.06); animation:temblor .22s linear infinite; }
+.btn-outline { background:#3a0a10; color:var(--hueso); }
+.btn-outline:hover { background:var(--sangre); color:var(--negro); }
+@keyframes temblor { 0%,100%{translate:0 0} 25%{translate:1px -1px} 75%{translate:-1px 1px} }
+
+/* ===== NAVBAR ===== */
+.navbar { position:absolute; top:0; left:0; right:0; padding:24px 5%; display:flex; justify-content:space-between; align-items:center; z-index:100; }
+.logo { display:flex; align-items:center; gap:12px; font-family:var(--brocha); font-size:1.5em; color:var(--sangre); }
+.logo-circle { width:14px; height:14px; border-radius:50%; background:var(--sangre); box-shadow:0 0 12px var(--sangre); }
+#nav { display:flex; gap:22px; align-items:center; font-family:var(--gotica); }
+#nav a:not(.btn) { color:var(--hueso); text-decoration:none; font-weight:800; }
+#nav a:not(.btn):hover { color:var(--sangre); }
+#nav .btn { padding:8px 20px !important; font-size:.95em !important; }
+
+/* ===== HERO (PORTADA) ===== */
+.hero { 
+  /* Debe estar transparente o sin background */
+  background: transparent; 
+  position:relative; 
+  min-height:100vh; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  padding:110px 5% 60px; 
+}
+.hero-content {
+  width: 100%; 
+  max-width: 760px; 
+  text-align: center; 
+  padding: 44px 36px;
+  container-type: inline-size;
+  
+  /* Fondo más claro y translúcido */
+  background: rgba(42, 31, 56, 0.85); 
+  
+  border: 2px dotted var(--punto);
+  box-shadow: 0 0 0 7px rgba(0,0,0,.5), 0 0 80px rgba(230, 30, 44, 0.5); /* Resplandor rojo más fuerte */
+  backdrop-filter: blur(8px);
+}
+
+.susurro { 
+  font-family: var(--gotica); 
+  font-weight: 500; 
+  font-size: clamp(1.5rem, 5vw, 2.6rem); 
+  color: var(--hueso); /* Cambiado de --uva a --hueso */
+  opacity: 0.9; 
+  letter-spacing: 0.04em; 
+}
+
+.hero-content h2 { 
+  font-family: var(--gotica); 
+  font-weight: 800; 
+  font-size: clamp(1.1rem, 3vw, 1.5rem); 
+  color: var(--hueso); 
+  margin: 26px 0 18px; 
+}
+
+.hero-content h1 {
+  font-family:var(--brocha); font-weight:400;  font-size: clamp(2.2rem, 13cqw, 7.5rem); white-space: nowrap; line-height:1.05;
+  color:var(--sangre); text-transform:uppercase; margin:6px 0;
+  text-shadow:0 0 22px rgba(230,30,44,.45);
+  animation:parpadeo 2.6s steps(1) 1;
+}
+@keyframes parpadeo { 0%{opacity:0} 8%{opacity:1} 12%{opacity:.1} 18%{opacity:1} 22%{opacity:0} 30%{opacity:1} 55%{opacity:.4} 60%,100%{opacity:1} }
+.hero-content h2 { font-family:var(--gotica); font-weight:800; font-size:clamp(1.1rem,3vw,1.5rem); color:var(--hueso); margin:26px 0 18px; }
+.aviso { border:1px dotted var(--sangre); color:var(--sangre); padding:14px 18px; margin:0 auto 28px; max-width:540px; font-size:.95em; }
+.divisor { color:var(--uva); font-size:1.6em; letter-spacing:.6em; margin:4px 0 22px; }
+
+/* ===== SECCIÓN DISFRACES ===== */
+.disfraces-section { 
+  background: rgba(20, 12, 28, 0.85); 
+  backdrop-filter: blur(3px);
+  border-top: 2px dotted var(--punto); 
+  min-height: 100vh; 
+  width: 100vw; 
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 80px 2%; 
+  z-index: 20;
+}
+
+/* ===== GRID DE TARJETAS ===== */
+.grid { 
+  display: grid; 
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 25px; /* Espacio entre tarjetas */
+  
+  /* Aumentamos al máximo el ancho disponible */
+  width: 100%; 
+  max-width: 1900px; /* O poné 100% si querés que llegue justo al borde */
+  margin: 0 auto; 
+  align-items: start;
+}
+
+/* Si la pantalla se achica, bajamos a 3 o 2 columnas para que no se aplasten */
+@media (max-width: 1200px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 800px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card { 
+  display: flex; 
+  flex-direction: column; 
+  background: #2a1f38; /* Un tono violáceo claro en vez de negro */
+  border: 2px dotted var(--punto); 
+  transition: all .3s ease; 
+  width: 100%; 
+  position: relative;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05); /* Brillo sutil */
+}
+.card:hover { border-color:var(--sangre); }
+.card-header { padding:14px; display:flex; flex-direction:column; align-items:center; }
+.preview-img, .disfraz-img { width:100%; aspect-ratio:1157/677; overflow:hidden; background:#000; border:1px solid #2a2a2a; position:relative; }
+.preview-img { margin-bottom:14px; }
+.preview-img img, .disfraz-img img { width:100%; height:100%; object-fit:cover; filter:saturate(.45) contrast(1.15) sepia(.15); transition:filter .4s; }
+.card:hover img { filter:none; }
+.card-header h3 { font-family:var(--gotica); font-weight:800; font-size:1.1em; text-align:center; min-height:48px; display:flex; align-items:center; margin-bottom:12px; }
+.btn-ver-mas { background:none; border:1px dotted var(--sangre); color:var(--sangre); font-family:var(--maquina); font-size:.9em; padding:6px 18px; cursor:pointer; }
+.btn-ver-mas:hover { background:var(--sangre); color:var(--negro); }
+
+/* Cuerpo del expediente (Oculto en la grilla) */
+.card-body { display:none; flex-direction:column; gap:14px; padding:0 18px 20px; }
+.card.expanded { max-width: 100%; border-color: var(--sangre); box-shadow: 0 0 34px rgba(230,30,44,.25); }
+.card.expanded .card-body { display:flex; }
+
+.disfraz-img { border-color:var(--sangre); }
+.disfraz-img img { object-position: center top; }
+
+.ficha { list-style:none; color:var(--sangre); font-size:.92em; border-top:1px dotted var(--sangre); border-bottom:1px dotted var(--sangre); padding:10px 0; position: relative; }
+.ficha b { color:var(--hueso); font-weight:400; }
+.ficha .exp { color:var(--hueso); letter-spacing:.12em; border-bottom:1px dotted var(--sangre); margin-bottom:6px; padding-bottom:4px; }
+.ficha::after { content:'CONFIDENCIAL'; position:absolute; right:4px; top:8px; rotate:-10deg; border:3px double var(--sangre); padding:0 8px; font-family:var(--brocha); opacity:.5; pointer-events:none; }
+
+.votos-count { text-align:center; color:var(--sangre); font-size:1.05em; }
+.btn-votar { background:var(--sangre); color:var(--negro); border:none; padding:13px; font-family:var(--brocha); font-size:1.1em; cursor:pointer; transition:background .2s; }
+.btn-votar:hover { background:#ff3341; }
+
+.frase { font-size:1.1em; min-height:1.7em; color:var(--sangre); }
+.frase::after { content:'▌'; animation:cursor 1s steps(1) infinite; }
+@keyframes cursor { 50% { opacity:0; } }
+
+/* ===== VENTANA MODAL ===== */
+.modal-fondo {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); 
+  align-items: center; justify-content: center; padding: 20px;
+}
+.modal-fondo.activo { display: flex; }
+.modal-fondo .card {
+  max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; 
+  border: 2px solid var(--sangre); animation: aparecer .3s ease-out;
+  background: var(--caja); position: relative;
+}
+.modal-fondo .card-header { display: none; } /* Ocultar cabecera en modal */
+.modal-fondo .card-body { display: flex; padding: 20px; }
+@keyframes aparecer { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ===== ESTILOS DE ADMIN, LOGIN Y REGISTRO ===== */
+body > header { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:26px 5%; position: relative; z-index: 100;}
+body > header h1 { font-family:var(--brocha); font-weight:400; color:var(--sangre); font-size:clamp(1.6rem,5vw,2.6rem); }
+main { max-width:1200px; margin:0 auto; padding:10px 5% 70px; position: relative; z-index: 10;}
+main h2 { font-family:var(--gotica); color:var(--hueso); margin:24px 0 16px; text-align:center; }
+.form-box { display:flex; flex-direction:column; gap:14px; max-width:420px; margin:40px auto; padding:30px; background:var(--caja); border:2px dotted var(--punto); box-shadow:0 0 0 7px rgba(0,0,0,.65); position: relative; z-index: 10;}
+.form-box input, .form-box textarea { background:#000; border:1px dotted var(--punto); color:var(--hueso); font-family:var(--maquina); font-size:1em; padding:12px; }
+.form-box input:focus, .form-box textarea:focus { border-color:var(--sangre); outline:none; }
+.form-box a { color:var(--sangre); }
+.form-box p, .form-box .msg { text-align:center; font-size:.9em; }
+#lista .card { padding:16px; gap:10px; }
+#lista .card img { width:100%; }
+.actions { display:flex; gap:10px; flex-wrap:wrap; }
+
+/* ===== SANGRE QUE GOTEA ===== */
+.card::after, .hero-content::after, .form-box::after {
+  content:''; position:absolute; left:10px; right:10px; top:100%; height:0; z-index:3; pointer-events:none;
+  transition:height .9s cubic-bezier(.3,0,.7,1);
+  background:
+    radial-gradient(circle 4px at 10% 24px,var(--sangre) 95%,#0000) no-repeat,
+    radial-gradient(circle 4px at 31% 40px,var(--sangre) 95%,#0000) no-repeat,
+    radial-gradient(circle 4px at 52% 18px,var(--sangre) 95%,#0000) no-repeat,
+    radial-gradient(circle 4px at 73% 34px,var(--sangre) 95%,#0000) no-repeat,
+    radial-gradient(circle 4px at 90% 28px,var(--sangre) 95%,#0000) no-repeat,
+    linear-gradient(var(--sangre),var(--sangre)) 10% 0/5px 24px no-repeat,
+    linear-gradient(var(--sangre),var(--sangre)) 31% 0/5px 40px no-repeat,
+    linear-gradient(var(--sangre),var(--sangre)) 52% 0/5px 18px no-repeat,
+    linear-gradient(var(--sangre),var(--sangre)) 73% 0/5px 34px no-repeat,
+    linear-gradient(var(--sangre),var(--sangre)) 90% 0/5px 28px no-repeat;
+}
+.card:hover::after, .hero-content:hover::after, .form-box:hover::after { height:46px; }
+
+/* ===== GLITCH VHS ===== */
+.hero-content h1:hover, .section-title:hover { animation:vhs .35s steps(2) infinite; }
+@keyframes vhs {
+  0%   { text-shadow:3px 0 #00e5ff,-3px 0 var(--sangre); transform:translateX(-2px); }
+  50%  { text-shadow:-3px 0 #00e5ff,3px 0 var(--sangre); transform:translateX(2px) skewX(-4deg); }
+  100% { text-shadow:2px 0 #00e5ff,-2px 0 var(--sangre); transform:none; }
+}
+.card:hover .preview-img img { animation:vhs-img .3s steps(3) 1; }
+@keyframes vhs-img { 0%{transform:translateX(-4px);filter:hue-rotate(40deg) saturate(2)} 33%{transform:translateX(5px) skewX(3deg)} 66%{transform:translateX(-2px);filter:none} 100%{transform:none} }
+
+/* ===== NIEBLA Y TELARAÑAS ===== */
+.niebla { position:fixed; left:0; bottom:0; width:200%; height:36vh; pointer-events:none; z-index:997; opacity:.25; filter:blur(18px);
+  background:radial-gradient(ellipse 18% 55% at 15% 80%,#b9a7cc,transparent),radial-gradient(ellipse 22% 60% at 45% 90%,#b9a7cc,transparent),radial-gradient(ellipse 16% 50% at 75% 85%,#b9a7cc,transparent);
+  animation:deriva 70s linear infinite alternate; }
+.niebla.b { opacity:.16; bottom:-4vh; animation-duration:110s; animation-direction:alternate-reverse; }
+@keyframes deriva { to { transform:translateX(-50%); } }
+.tela { position:fixed; top:0; width:min(150px,22vw); pointer-events:none; z-index:50; }
+.tela.izq { left:0; } .tela.der { right:0; transform:scaleX(-1); }
+
+/* ===== PIE DE PÁGINA ===== */
+.pie { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:22px 32px; padding:40px 5% 70px; background:rgba(6,4,7,.92); border-top:2px dotted var(--punto); position: relative; z-index: 10;}
+.contador span { background:#000; border:1px dotted var(--punto); padding:2px 10px; letter-spacing:.18em; color:var(--sangre); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1100px) {
+  .hero-content { padding:32px 18px; }
+  .ventana-flotante { display: none !important; } /* Ocultar ventanas en celular */
+}
+@media (prefers-reduced-motion:reduce) { * { animation:none !important; transition:none !important; } }
+
+/* ===== VENTANAS MÁS GRANDES ===== */
+.v1 { 
+  top: 15%; left: 2%; width: 320px; /* Antes 260px */
+  animation-delay: 0s; 
+}
+.v2 { 
+  top: 20%; right: 2%; width: 380px; /* Antes 320px */
+  animation-delay: -3s; 
+}
+.v3 { 
+  bottom: 10%; right: 5%; width: 340px; /* Antes 280px */
+  animation-delay: -6s; 
+}
+
+
+
+/* ===== ACCESIBILIDAD (WCAG 2.1 AA) ===== */
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+:where(a, button, input, textarea, select, [tabindex]):focus-visible { outline:3px solid var(--sangre); outline-offset:3px; }
+/* clip-path recorta el outline: en los botones de recorte se quita mientras tienen foco */
+.btn:focus-visible { clip-path:none; transform:none; outline:3px solid var(--hueso); outline-offset:3px; }
+.usuario-actual { color:var(--hueso); font-weight:800; }
+.btn-sm { padding:8px 20px !important; font-size:.9em !important; }

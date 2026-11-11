@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión · Concurso de Disfraces Halloween</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#contenido" class="skip-link">Saltar al contenido principal</a>
+  <header>
+    <h1>Iniciar sesión</h1>
+    <a href="index.html" class="btn">Volver al inicio</a>
+  </header>
+
+  <main id="contenido" tabindex="-1">
+    <form class="form-box" id="formLogin">
+      <label for="nombre">Usuario</label>
+      <input type="text" id="nombre" name="nombre" autocomplete="username" required>
+      <label for="clave">Contraseña</label>
+      <input type="password" id="clave" name="clave" autocomplete="current-password" required>
+      <button class="btn" type="submit">Entrar</button>
+      <div class="msg" id="msg" role="status" aria-live="polite" aria-atomic="true"></div>
+      <p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
+    </form>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script>
+    const form = document.getElementById('formLogin'), msg = document.getElementById('msg');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const boton = form.querySelector('button[type=submit]'), texto = boton.textContent;
+      boton.disabled = true; boton.textContent = 'Procesando...'; msg.className = 'msg'; msg.textContent = '';
+      try {
+        const r = await fetch('api/auth/login.php', {
+          method:'POST', credentials:'include', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({nombre: form.nombre.value, clave: form.clave.value})
+        });
+        const d = await r.json();
+        if (!r.ok) throw new Error(d.error);
+        msg.className = 'msg ok'; msg.textContent = 'Bienvenido ' + d.usuario.nombre;
+        setTimeout(() => location.href = 'index.html', 900);
+      } catch (err) {
+        msg.className = 'msg error'; msg.textContent = err.message;
+        boton.disabled = false; boton.textContent = texto;
+      }
+    });
+  </script>
+  <script src="js/efectos.js"></script>
+</body>
+</html>

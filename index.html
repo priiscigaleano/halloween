@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concurso de Disfraces Halloween</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- SKIP LINK (Accesibilidad: Permite saltar el menú con Tab) -->
+  <a href="#disfraces" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- ===== DECORACIÓN: VENTANAS FLOTANTES (ARIA-HIDDEN) ===== -->
+  <div class="ventana-flotante v1" aria-hidden="true" inert>
+    <div class="barra-titulo">eye_tracker.exe <span>✖</span></div>
+    <div class="contenido-ventana">
+      <img src="img/decoracion-ojo.jpg" alt="">
+    </div>
+  </div>
+
+  <div class="ventana-flotante v2" aria-hidden="true" inert>
+    <div class="barra-titulo">Chain_Message.txt <span>✖</span></div>
+    <div class="contenido-ventana texto-viejo">
+      <p>Send this to 10 people or she visits you tonight...</p>
+      <button>Send</button> <button>Cancel</button>
+    </div>
+  </div>
+
+  <div class="ventana-flotante v3" aria-hidden="true" inert>
+    <div class="barra-titulo">CAM_03_FEED <span>REC ●</span></div>
+    <div class="contenido-ventana camara">
+      <img src="img/decoracion-camara.jpg" alt="">
+      <div class="scanlines"></div>
+    </div>
+  </div>
+
+  <!-- ===== HEADER SEMÁNTICO ===== -->
+  <header class="navbar">
+    <div class="logo"><span class="logo-circle"></span> Halloween</div>
+    <nav id="nav" aria-label="Menú principal">
+      <!-- auth.js inyecta los botones aquí -->
+    </nav>
+  </header>
+
+  <!-- ===== MAIN SEMÁNTICO ===== -->
+  <main>
+    
+    <!-- SECCIÓN HERO (PORTADA) -->
+    <section class="hero">
+      <div class="hero-content">
+        <p class="susurro">Pasa. Te estábamos</p>
+        <h1>Halloween</h1>
+        <p class="susurro">esperando…</p>
+        <h2>Vota por el disfraz que más te quite el sueño</h2>
+        <p class="aviso">Aviso: luces parpadeantes, sustos ocasionales, disfraces perturbadores y humor negro. Solo las almas registradas pueden votar.</p>
+        <a href="#disfraces" class="btn">Ver los expedientes</a>
+      </div>
+    </section>
+
+    <!-- SECCIÓN DISFRACES -->
+    <section class="disfraces-section" id="disfraces" tabindex="-1" aria-labelledby="titulo-disfraces">
+      <h2 class="section-title" id="titulo-disfraces">Los Candidatos</h2>
+      
+      <!-- REGIÓN VIVA: Para que los lectores de pantalla lean los mensajes de la API -->
+      <div class="msg-container" id="msg" role="status" aria-live="polite" aria-atomic="true"></div>
+      
+      <!-- Aquí app.js inyecta las tarjetas -->
+      <div class="grid" id="disfraces-container"></div>
+    </section>
+    
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="pie">
+    <p class="contador">Visitantes: <span id="visitas">000666</span></p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="js/auth.js"></script>
+  <script src="js/app.js?v=11"></script>
+  <script src="js/efectos.js"></script>
+</body>
+</html>
